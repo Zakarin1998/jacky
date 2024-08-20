@@ -1,0 +1,830 @@
+/*!
+ * Pepe CSS Stylesheet v1.0.0
+ * Copyright CC0 - The Jacky Chan Dollar Devs
+ * Complete Repo Here (https://github.com/Zakarin1998/jacky)
+ */
+
+/* ROADMAP */
+.Roadmap_roadmapContainer__27MJH{
+    background-color:var(--color-pepe-dark);
+    padding:20px;
+    border-radius:8px;
+    color:#fff;
+    font-family:Mochiy Pop One,sans-serif
+}
+
+.Roadmap_roadmapTitle__OAYke{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:40px
+}
+
+.Roadmap_roadmap__poIoo{
+    display:flex;
+    flex-direction:column;
+    align-items:center
+}
+
+.Roadmap_milestone__Pvs2T{
+    background-color:var(--color-pepe);
+    border-radius:8px;
+    width:80%;
+    margin-bottom:20px;
+    padding:15px;
+    display:flex;
+    align-items:center
+}
+
+.Roadmap_milestoneImage__9_yZa{
+    margin-right:20px
+}
+
+.Roadmap_milestoneContent__2f_v_{
+    text-align:left
+}
+
+.Roadmap_milestoneContent__2f_v_ h3{
+    margin:0;
+    font-size:1.5rem
+}
+
+.Roadmap_milestoneContent__2f_v_ p{
+    margin:5px 0 0;
+    font-size:1rem
+}
+
+/* DISCLAIMER */
+.Disclaimer_disclaimerContainer__imApO{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:20px;
+    max-width:90%;
+    margin:auto;
+    box-sizing:border-box
+}
+
+.Disclaimer_title__5WTv3{
+    font-size:2rem;
+    text-align:center;
+    margin:32px
+}
+
+.Disclaimer_section__xXaE0{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:100%
+}
+
+.Disclaimer_subtitle__8m_jO{
+    font-size:1.5rem;
+    margin-bottom:15px
+
+}
+
+.Disclaimer_heading__KY7qY{
+    font-size:1.2rem;
+    margin-top:15px;
+    margin-bottom:5px
+}
+
+.Disclaimer_text____wwy{
+    font-size:1rem;
+    line-height:1.6;
+    margin-bottom:15px
+}
+
+@media (max-width:1024px){
+    .Disclaimer_title__5WTv3{font-size:1.8rem;margin-bottom:18px}
+    .Disclaimer_subtitle__8m_jO{font-size:1.3rem}
+    .Disclaimer_heading__KY7qY{font-size:1.1rem}
+    .Disclaimer_text____wwy{font-size:.95rem}
+    .Disclaimer_disclaimerContainer__imApO{padding:18px}
+}
+
+@media (max-width:768px){
+    .Disclaimer_title__5WTv3{font-size:1.6rem;margin-bottom:16px}
+    .Disclaimer_subtitle__8m_jO{font-size:1.2rem}
+    .Disclaimer_heading__KY7qY{font-size:1rem}
+    .Disclaimer_text____wwy{font-size:.9rem}
+    .Disclaimer_disclaimerContainer__imApO{padding:16px}
+}
+
+@media (max-width:480px){
+    .Disclaimer_title__5WTv3{font-size:1.4rem;margin-bottom:14px}
+    .Disclaimer_subtitle__8m_jO{font-size:1.1rem}
+    .Disclaimer_heading__KY7qY{font-size:.9rem}
+    .Disclaimer_text____wwy{font-size:.85rem}
+    .Disclaimer_disclaimerContainer__imApO{padding:14px}
+}
+
+/* HOWTOBUY */
+.HowToBuy_howToBuyContainer__d2SqP{padding:20px;background:linear-gradient(135deg,var(--color-pepe-dark),var(--color-pepe));border-radius:8px}
+
+.HowToBuy_buySteps__vtpne{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+
+.HowToBuy_buyStep__ymLNY{display:flex;flex-direction:column;align-items:center;text-align:center;border-radius:4px;padding:20px;width:100%;max-width:300px}
+
+.HowToBuy_imageRow__evN8_{display:flex;gap:10px;margin-bottom:10px;justify-content:center}
+
+.HowToBuy_imageContainer__t3JZp{background-color:#d0d0d0;padding:15px;border-radius:4px;display:flex;align-items:center;justify-content:center}
+
+.HowToBuy_stepImage__TXaCo{border-radius:4px;width:70px;height:70px}
+
+@media (min-width:768px){
+    .HowToBuy_buySteps__vtpne{flex-direction:row;justify-content:space-around}
+    .HowToBuy_imageRow__evN8_{gap:5px}
+    .HowToBuy_stepImage__TXaCo{width:90px;height:90px}
+}
+
+/* ECOSYSTEM SECTION */
+.Ecosystem_ecosystemContainer__0gxSw{
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
+    margin-bottom:20px
+}
+
+.Ecosystem_tokenSection__tyRhj{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px
+}
+
+.Ecosystem_token__JqmZo{
+    flex-grow:1;
+    flex-shrink:1;
+    flex-basis:calc(33% - 20px);
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+    text-align:center
+}
+
+.Ecosystem_tokenImage__gUEym{
+    margin-bottom:10px
+}
+
+.Ecosystem_token__JqmZo h3{
+    margin:10px 0
+}
+
+.Ecosystem_token__JqmZo a{
+    color:var(--color-pepe);
+    text-decoration:none
+}
+
+.Ecosystem_token__JqmZo a:hover{
+    text-decoration:underline
+}
+
+.Ecosystem_pepexLink__u1dCG{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 15px;
+    background-color:var(--color-pepe);
+    color:#fff;
+    border-radius:8px;
+    text-decoration:none;
+    transition:background-color .3s ease
+}
+
+.Ecosystem_pepexLink__u1dCG:hover{
+    background-color:var(--color-pepe-hover)
+}
+
+/* TIME */
+.TimeSinceDeployment_timerInfo__vq1IR{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:20px 0
+}
+
+.TimeSinceDeployment_timer__RH_zb{
+    display:flex;
+    align-items:center;
+    font-size:16px
+}
+
+.TimeSinceDeployment_logoImage__w_JWU{
+    margin-right:8px
+}
+
+/* SOCIAL LINKS */
+.SocialLinks_socialContainer__dzme3{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    padding:20px
+}
+
+.SocialLinks_row___SMk0{
+    display:flex;
+    gap:15px;
+    padding:10px 0
+}
+
+.SocialLinks_logoImage__bEcwx{
+    border-radius:50%;
+    padding:4px;
+    background:linear-gradient(135deg,var(--color-pepe),var(--color-pepe-dark));
+    border-radius:6px
+}
+
+@media (max-width:768px){
+    .SocialLinks_row___SMk0{
+        flex-wrap:wrap;
+        justify-content:center
+    }
+}
+
+/* TOKENOMICS */
+.Tokenomics_container__JmYr_{
+    background-color:rgba(0,0,0,.6);
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
+    display:flex;
+    justify-content:space-between;
+    align-items:center
+}
+
+.Tokenomics_header__fwTMI{
+    flex-grow:1
+}
+
+.Tokenomics_title__gWwKk{
+    font-size:2rem;
+    color:var(--color-pepe)
+}
+
+.Tokenomics_keyInfo__CmojH{
+    font-size:1.2rem;
+    color:#3e8e41;
+    margin:10px 0
+}
+
+.Tokenomics_logoAddress__9FvSb{
+    display:flex;
+    align-items:center
+}
+
+.Tokenomics_logoSection__2OTTq{
+    margin-right:20px
+}
+
+.Tokenomics_addressSection__MRcBA a{
+    color:#000;
+    background-color:var(--color-pepe);
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:background-color .3s ease
+}
+
+.Tokenomics_addressSection__MRcBA a:hover{
+    background-color:#3e8e41
+}
+
+.Tokenomics_timer__ULMAV{
+    background-color:#333;
+    color:#fff;
+    padding:20px;
+    border-radius:15px;
+    font-size:1.5rem
+}
+
+@media (max-width:768px){
+    .Tokenomics_container__JmYr_{
+        flex-direction:column;
+        align-items:flex-start
+    }
+    
+    .Tokenomics_timer__ULMAV{
+        margin-top:20px;
+        width:100%
+    }
+}
+
+.Tokenomics_docs__szOMR a{
+    color:#000;
+    background-color:var(--color-pepe);
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:background-color .3s ease
+}
+
+.Tokenomics_docs__szOMR a:hover{
+    background-color:#3e8e41
+}
+
+.Tokenomics_tokenomicsContainer__V89YP{
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 6px 12px rgba(0,0,0,.2);
+    text-align:center;
+    color:#fff
+}
+
+.Tokenomics_tokenomicsContent__md81u h3{
+    margin:10px 0;
+    font-size:1.5rem;
+    color:#f0f0f0
+}
+
+.Description_container__OBAls{
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
+    background:linear-gradient(135deg,var(--color-pepe-dark),var(--color-pepe))
+}
+
+/* DESCRIPTION */
+.Description_description__JURFv{
+    margin-bottom:20px
+}
+
+.Description_introSection__EMm7F{
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
+    display:flex;
+    flex-direction:column;
+    gap:20px
+}
+
+.Description_imageWrapper__YPKNB{
+    margin-right:20px
+}
+
+.Description_introText__iwx00{
+    flex:1 1
+}
+
+.Description_header__XHlYP{
+    display:flex;
+    align-items:center;
+    margin-bottom:20px
+}
+
+.Description_logoSection__XCl9N{
+    margin-right:10px
+}
+
+.Description_addressSection__yG6sG{
+    margin-top:10px
+}
+
+.Description_addressLink___gARx{
+    color:var(--color-pepe);
+    text-decoration:none;
+    font-weight:700
+}
+
+.Description_addressLink___gARx:hover{
+    text-decoration:underline
+}
+
+/* DEX SECTION */
+.DEX_dexContainer__vzZ_X{
+    display:flex;
+    text-align:center;
+    align-items:center;
+    justify-self:center;
+    padding:20px;
+    color:#fff
+}
+
+.DEX_dexHeading__GEuv9{
+    font-size:2rem;
+    margin-bottom:20px;
+    color:#fff
+}
+
+@media (max-width:768px){
+    .DEX_dexHeading__GEuv9{font-size:1.5rem}
+}
+@media (max-width:480px){
+    .DEX_dexHeading__GEuv9{font-size:1.25rem}
+}
+
+.DEX_chartSwapperContainer__EPOZo{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:20px;flex-wrap:wrap
+}
+
+.DEX_poolTable__MZLs7{
+    width:100%;
+    border-collapse:collapse;
+    border-radius:8px;
+    overflow:hidden;
+    background-color:var(--color-bg);
+    color:#fff;margin-bottom:20px
+}
+
+.DEX_poolTable__MZLs7 td,.DEX_poolTable__MZLs7 th{
+    padding:15px;
+    background-color:rgba(0,0,0,.6)
+}
+
+.DEX_poolTable__MZLs7 tfoot td{
+    font-size:1.2rem;
+    color:#fff;
+    background-color:rgba(0,0,0,.6)
+}
+
+.DEX_poolTable__MZLs7 a{
+    color:#fff;
+    text-decoration:none
+}
+
+.DEX_poolTable__MZLs7 a:hover{
+    color:#3e8e41;
+    text-decoration:underline
+}
+
+@keyframes DEX_highlightChange__YNfyE{0%{color:red}to{color:#4caf50}}
+
+.DEX_highlightChange__YNfyE{
+    animation:DEX_highlightChange__YNfyE 2s
+}
+
+@media (max-width:600px){
+    .DEX_chartSwapperContainer__EPOZo{flex-direction:column}
+}
+
+@media (max-width:768px){
+    .DEX_poolTable__MZLs7 td,.DEX_poolTable__MZLs7 th{padding:10px}
+    .DEX_poolTable__MZLs7 tfoot td{font-size:1rem}
+}
+
+.DEX_container__6G_8v{
+    text-align:center;
+    background-color:rgba(0,0,0,.6);
+    color:#fff;
+    border-radius:15px;
+    margin:auto;
+    width:-moz-fit-content;
+    width:fit-content;
+    padding:196px 32px 32px;
+    background:linear-gradient(to bottom,var(--color-bg),transparent,var(--color-bg)),radial-gradient(circle,transparent 0,var(--color-bg) 70%)
+}
+
+.DEX_header__xl5UE{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:20px
+}
+
+.DEX_logoAddress__dbymq{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:10px
+}
+
+.DEX_logoSection__M_SaY{
+    margin-right:15px
+}
+
+.DEX_title__75wEC{
+    font-size:2rem;
+    margin:0
+}
+
+.DEX_addressLink__800er{
+    color:#4caf50;
+    text-decoration:none
+}
+
+.DEX_addressLink__800er:hover{
+    text-decoration:underline
+}
+
+.DEX_infoSection__whlyi{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-gap:15px;
+    gap:15px;
+    text-align:left
+}
+
+.DEX_infoItem__x5ia6{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    margin-bottom:10px;
+    color:#000
+}
+
+.DEX_infoLabel__DoMyX{
+    font-size:1rem;
+    color:#aaa;
+    margin-right:10px
+}
+
+.DEX_keyInfo__Qj0Gr{
+    font-size:1.2rem;
+    background-color:var(--color-pepe);
+    padding:15px;
+    border-radius:10px;
+    font-weight:700
+}
+
+@media (max-width:768px){
+    .DEX_infoSection__whlyi{grid-template-columns:1fr}
+}
+
+.DEX_addressSection__xuBiC a{
+    color:#000;
+    background-color:var(--color-pepe);
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:background-color .3s ease;
+    margin:10px
+}
+
+.DEX_addressSection__xuBiC a:hover{background-color:#3e8e41}
+
+.DEX_timer__XIrOC{
+    background-color:rgba(0,0,0,.6);
+    color:var(--color-pepe);
+    padding:20px;
+    border-radius:15px;
+    font-size:1.5rem;
+    margin-top:20px
+}
+
+.DEX_infoWrapper__0cV2q{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px
+}
+
+.DEX_infoSection__whlyi{
+    flex:1 1;
+    padding:10px;
+    border-radius:10px;
+    background-color:rgba(0,0,0,.6)
+}
+
+.DEX_mainContent__4ON5J{display:flex}
+
+.DEX_stats__hRh4j{flex-basis:33%;margin:10px}
+
+.DEX_socialContainer__UV_z_{
+    flex-basis:66%;
+    background-color:var(--color-pepe);
+    border-radius:15px;
+    margin:10px
+}
+
+.DEX_row__Tj5WS{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:10px
+}
+
+.DEX_logoImage__rBNfT{
+    height:40px;
+    width:auto;
+    margin:10px
+}
+
+@media (max-width:768px){
+    .DEX_infoSection__whlyi{grid-template-columns:1fr}
+    .DEX_row__Tj5WS,.DEX_socialContainer__UV_z_{flex-direction:row;flex-wrap:wrap}
+    .DEX_logoImage__rBNfT{margin-bottom:10px}
+}
+
+.DEX_howToBuyContainer__1Q8mG{
+    text-align:center;
+    padding:20px
+}
+
+.DEX_buySteps__6VHw8{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    margin-top:20px
+}
+
+.DEX_buyStep__SehjE{
+    background-color:#f5f5f5;
+    border-radius:10px;
+    padding:20px;
+    width:30%;
+    margin-bottom:20px;
+    box-shadow:0 4px 6px rgba(0,0,0,.1)
+}
+
+.DEX_buyStep__SehjE img{
+    max-width:100%;
+    height:auto;
+    margin-bottom:10px
+}
+
+.DEX_detailedGuide__sdgGu{
+    margin-top:20px
+}
+.DEX_detailedGuide__sdgGu a{
+    background-color:#4caf50;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:5px;
+    text-decoration:none
+}
+
+@media screen and (max-width:768px){
+    .DEX_buySteps__6VHw8{
+flex-direction:column;
+        align-items:center
+    }
+    .DEX_buyStep__SehjE{width:80%}
+}
+
+.DEX_componentSpacing__wW67k{margin-bottom:40px}
+
+/* HOME */
+.Home_main__2uIek{
+    display:grid;
+    place-items:center;
+    height:100%;
+    padding-top:80px;
+    background:linear-gradient(to bottom,var(--color-bg),transparent,var(--color-bg)),radial-gradient(circle,transparent 0,var(--color-bg) 70%)
+}
+
+.Home_header__ZUWxe{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 1rem 1.75rem;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:111111;
+    background-color:var(--color-bg)
+}
+
+.Home_dexComponent__AG2t6{margin-top:80px;padding:20px}
+
+.Home_header__ZUWxe .Home_buttons__L_amR{display:flex;align-items:center;gap:.5rem}
+
+.Home_wrapper__02JqL{
+    position:relative;
+    border:1px solid var(--color-primary);
+    border-radius:var(--rounded-md);
+    background:hsl(var(--h),1%,10%);
+    max-width:clamp(20rem,90%,40rem);
+    box-shadow:var(--shadow-lg)
+}
+
+.Home_wrapper__02JqL:after{
+    position:absolute;
+    content:"";
+    top:0;
+    left:0;
+    right:0;
+    z-index:-1;
+    height:100%;
+    width:100%;
+    filter:blur(100px);
+    background:linear-gradient(95deg,#7baff3,#3f8ef6,#0b2c56,#4e70d0);
+    background-size:200% 200%;
+    animation:Home_animateGlow__8dMnF 5s linear infinite
+}
+
+.Home_wrapper__02JqL li,.Home_wrapper__02JqL>ul>li{
+    list-style-type:none
+}
+
+.Home_content__Qnbja{
+    border-radius:8px;
+    padding:20px;
+    box-shadow:0 2px 4px rgba(0,0,0,.1);
+    margin-bottom:20px
+}
+
+.Home_content__Qnbja h2{
+    color:#c9c9c9;
+    margin-bottom:15px
+}
+
+.Home_infoRow__zTutr{border:1px solid #ddd;padding:10px 15px;border-radius:5px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+
+.Home_infoRow__zTutr span{font-weight:700;color:#555;margin-right:10px}
+
+.Home_infoRow__zTutr .Home_value__p_AU8{color:#1a73e8;font-weight:700}
+
+.Home_infoRow__zTutr.Home_balanceRow__n__zD{margin-bottom:30px}
+
+.Home_wrapperFooter__jn7Fb{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:.5rem;
+    background-color:hsla(var(--h),var(--s),22%,.5);
+    border-top:1px solid hsl(var(--h),var(--s),20%);
+    border-radius:0 0 var(--rounded-md) var(--rounded-md);
+    font-size:.875rem;
+    white-space:pre;
+    color:var(--color-grey-700)
+}
+
+.Home_wrapperFooter__jn7Fb svg{margin-right:.25rem}
+
+.Home_wrapperFooter__jn7Fb a{color:inherit;text-decoration:none;text-underline-offset:.125rem}
+
+.Home_wrapperFooter__jn7Fb a:hover{color:var(--color-grey-500)}
+
+.Home_wrapperFooter__jn7Fb svg:has(+a:hover){color:var(--color-grey-500)!important}
+
+.Home_container__9OuOz{padding:2rem 2.25rem}
+
+.Home_wrapper__02JqL li{color:var(--color-grey-400);line-height:1.75}
+
+.Home_wrapper__02JqL li:not(:first-child){margin-top:1rem}
+
+.Home_main__2uIek h1{font-size:1.75rem;font-weight:600}
+
+span.Home_button__Mzpzz{
+    position:relative;
+    display:inline-flex;
+    vertical-align:bottom;
+    align-items:center;
+    justify-content:center;
+    gap:.375rem;
+    padding:.375rem .675rem;
+    margin:0 .25rem;
+    font-size:.875rem;
+    border-radius:var(--rounded-sm);
+    background-color:hsl(var(--h),var(--s),20%);
+    border:1px solid hsl(var(--h),var(--s),22%);
+    color:inherit;
+    line-height:1;
+    box-shadow:var(--shadow-md);
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    transition:all .1s
+}
+
+span.Home_button__Mzpzz:hover{
+    background-color:hsl(var(--h),var(--s),30%);
+    border:1px solid hsl(var(--h),var(--s),32%);
+    color:var(--color-grey-100)
+}
+
+.Home_backdrop__HYxNf{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:4;
+    pointer-events:none;
+    background:hsla(0,0%,4%,.75);
+    transition:opacity .2s
+}
+
+@keyframes Home_animateGlow__8dMnF{0%{background-position:0 50%}to{background-position:200% 50%}}
+
+.Home_spacer__OS0a2{height:50px}
+
+.Home_logoContainer__Aeebd{display:flex;align-items:center}
+.Home_logoTextContainer__eBpbo{margin-left:10px}
+.Home_logoTitle__3hWE_{font-size:28px;color:#fff;margin:0;font-weight:700}
+
+.Home_logoSubtitle__p_h0B{
+    font-size:18px;
+    color:#fff;
+    margin:0;
+    font-weight:700
+}
+
+.Home_menuLink__aCTks a{
+    color:#fff;
+    font-weight:700;
+    background-color:var(--color-pepe);
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:background-color .3s ease;
+    margin:10px
+}
+
+.Home_menuLink__aCTks a:hover{
+    background-color:#3e8e41
+}

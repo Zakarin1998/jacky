@@ -1,0 +1,143 @@
+/* default.css */
+
+/* COLOR */
+
+.nav-sticky.navbar-custom .navbar-nav li.active a,
+.nav-sticky.navbar-custom .navbar-nav li a:hover,
+.nav-sticky.navbar-custom .navbar-nav li a:focus,
+.nav-sticky.navbar-custom .navbar-nav li a:active,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:active,
+.navbar .navbar-nav .nav-link.active,
+.navbar-custom .navbar-nav li.active a,
+.navbar-custom .navbar-nav li a:hover,
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active,
+.post-meta a:hover,
+.blog-post-title:hover,
+.text-primary,
+.btn-outline-primary,
+.features .features-box .features-icon,
+.work .work-pra ul li:hover i,
+.mobile .phone i,
+.bg-soft-primary,
+.link-post-content i {
+    color: #000000 !important;
+}
+
+/* BACKGROUND */
+
+.bg-primary,
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.testimonial-circle span.ring2 img,
+span.ring4 img,
+span.ring5 img,
+span.ring6,
+span.ring7,
+span.ring8,
+.mode-btn,
+.mobile .phone i::after,
+.home-1 .icon-text .icon {
+    background-color: #000000 !important;
+    color: #000000 !important;
+}
+
+/* BORDER-COLOR */
+
+.btn,
+.btn-primary,
+.btn-outline-primary,
+.custom-form .form-control:focus,
+.features .features-box:hover .features-icon,
+.pricing-box,
+.home-3 span.ring2 img,
+.ring4 img,
+.ring5 img,
+.mode-btn,
+.bg-soft-primary,
+.border-primary,
+.home-1 span.ring5 img {
+    border-color: #000000 !important;
+}
+
+@media (min-width: 200px) and (max-width: 991px) {
+    .navbar-custom .navbar-nav li.active a,
+    .navbar-custom .navbar-nav li a:hover,
+    .navbar-custom .navbar-nav li a:active {
+        color: #000000 !important;
+    }
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.focus,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary .open>.dropdown-toggle.btn-primary {
+    box-shadow: 0px 8px 20px -6px rgb(101 111 224);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.focus,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-primary .open>.dropdown-toggle.btn-primary {
+    box-shadow: 0px 8px 20px -6px rgb(101 111 224);
+    transform: translateY(-6px);
+}
+
+.bg-gradiant,
+.bg-outline-gradiant:hover {
+    background: #ffffff;
+    border-color: #000000 !important;
+    color: #000000 !important;
+}
+
+.text-gradiant {
+    background: -webkit-linear-gradient(#ffffff, #869dff);
+}
+
+.home-5::before {
+    background: rgba(113, 128, 235, .5) !important;
+}
+
+.home-2 .wave.-three {
+    background-color: rgba(113, 128, 235, .2);
+}
+
+.features .features-box:hover .features-icon,
+.bg-soft-primary,
+.home-5::after,
+.home-2 .wave,
+.home-2 .wave.-two {
+    background-color: rgba(113, 128, 235, .1) !important;
+}
+
+.info-img,
+.purple-img,
+.blue-img,
+.warning-img,
+.orange-img {
+    display: none !important;
+}
+
+.primary-img {
+    display: block !important;
+}
+
+body[data-layout-mode=dark] .navbar .navbar-nav .nav-link.active {
+    color: #000000 !important;
+}
