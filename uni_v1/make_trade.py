@@ -3,7 +3,7 @@ from constants import (
     VERSION, ADDRESS, PRIVATE_KEY, INFURA_KEY
 )
 from tokens import (
-    ETH, JCD,
+    ETH, SCHAP, JCD
 )
 
 # Some ETH subunits we will use
@@ -27,4 +27,4 @@ uniswap=Uniswap(
 # Sell around 0.013 ETH for JCD
 eth_qty = eth_0_01 + (3*eth_0_001)
 
-uniswap.make_trade(ETH,JCD,eth_qty)
+uniswap.make_trade(ETH,SCHAP,eth_qty)
