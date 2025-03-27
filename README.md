@@ -1,9 +1,21 @@
 # Jacky Chan Dollar - Public Repository
 
+
 ## $JCD Frontend Website
 
 Contains $JCD Website (html, css, images).
 This allows others to make their own versions or help maintenence.
+
+🥳 Update - Staking coming soon!
+After long time, this project is almost ready to the next phase.
+Uniswap V4 allows for higher rewards due to gas optimization and $JCD will have soon a strategy running around
+
+## Uniswap Library
+
+There are some Python snippets in "uni_v1" folder. 
+That code is really useful to interact to Uniswap protocol up to V3 version.
+
+Happy coding!
 
 ## Background
 
@@ -68,12 +80,108 @@ Il **Jacky Chan Dollar (JCD)** è un token crittografico che riveste un'importan
 
 - **Rinascita nel 2023:** Dopo anni di inattività, il JCD è stato riscoperto nel 2023, suscitando un rinnovato interesse come reliquia storica della DeFi, paragonabile a CryptoPunks ed Etheria Tiles. 
 
-## Uniswap Library
+## Prossimi step di sviluppo
 
-There are some Python snippets in "uni_v1" folder. 
-That code is really useful to interact to Uniswap protocol up to V3 version.
+# Piano di Sviluppo per l'Ecosistema $JCD
 
-Happy coding!
+## 1. Executive Summary
 
+Il nostro obiettivo è sfruttare le potenzialità di DAO come StakeDAO per boostare una memecoin basata su Ethereum, in particolare il token $JCD. Attraverso la creazione di una pool su Curve, l’implementazione di una strategia factory per l’autocompound dei rewards e l’offerta di incentivi per i liquidity provider (LP), intendiamo ottenere un APY nativo sulla memecoin. In una seconda fase, svilupperemo una semplice applicazione che permetta agli utenti di:
+- Swappare ETH per $JCD, integrando Metamask per l’autenticazione e la gestione dei wallet.
+- Interagire con una “strategia di staking” che, in realtà, sarà un’interfaccia wrapper verso la strategia di StakeDAO.
 
-## Tokenomics
+## 2. Obiettivi di Business e Tecnici
+
+- **Business:** Incrementare il marketcap di $JCD, attirando investitori e community grazie a meccanismi di incentivazione e strategie di yield farming.
+- **Tecnico:** Sviluppare una soluzione decentralizzata e modulare che sfrutti protocolli DeFi esistenti (Curve, StakeDAO) per garantire liquidità e rewards, e una interfaccia utente semplice per agevolare l’adozione.
+
+## 3. Architettura di Sistema
+
+### 3.1 Componenti principali
+- **Pool su Curve:** 
+  - Creazione e gestione di una pool per garantire liquidità e facilitare il trading tra $JCD e altri asset.
+- **Strategia Factory su StakeDAO:** 
+  - Implementazione di contratti intelligenti che compongono il meccanismo di autocompound per i rewards.
+  - Integrazione con le librerie open source di StakeDAO per semplificare la gestione dei rewards.
+- **App Base (Frontend):**
+  - Interfaccia per lo swap ETH <> $JCD, con connessione a Metamask.
+  - Modulo di “staking” che funzioni da wrapper, mostrando in maniera trasparente le operazioni reali eseguite dai contratti di StakeDAO.
+
+### 3.2 Flusso Operativo
+1. **Fase 1 – Creazione Pool e Strategia**
+   - Deploy della pool su Curve.
+   - Implementazione della strategia di autocompound su StakeDAO.
+   - Configurazione degli incentivi per i LP (reward token, distribuzioni, ecc.).
+2. **Fase 2 – Sviluppo App Base**
+   - Integrazione del wallet (Metamask) e interfaccia utente per lo swap.
+   - Implementazione del modulo di staking come interfaccia wrapper verso la strategia su StakeDAO.
+   - Testing e validazione dell’MVP.
+
+## 4. Specifiche Tecniche
+
+### 4.1 Tecnologie e Librerie Consigliate
+- **Smart Contract Development:**
+  - Linguaggio: Solidity (versione 0.8.x o superiore)
+  - Framework di sviluppo: Hardhat o Truffle
+  - Librerie utili: OpenZeppelin per standard di sicurezza e best practice.
+- **Integrazione DeFi:**
+  - Curve: Documentazione ufficiale per la creazione di pool.
+  - StakeDAO: Utilizzo delle loro API e librerie open source per strategie di autocompound.
+- **Frontend e App Base:**
+  - Framework: ReactJS o Next.js
+  - Libreria Web3: Ethers.js o Web3.js per interazioni con la blockchain.
+  - Integrazione Wallet: Metamask SDK.
+
+### 4.2 Specifiche dei Contratti Smart
+
+#### Pool su Curve
+- **Funzionalità:**
+  - Gestione della liquidità e swap tra asset.
+  - Integrazione con sistemi di reward per LP.
+- **Considerazioni di Sicurezza:**
+  - Verifica dei contratti tramite audit esterni.
+  - Implementazione di meccanismi di upgradeability (se necessario) tramite proxy patterns.
+
+#### Strategia Factory su StakeDAO
+- **Funzionalità:**
+  - Autocompound dei rewards generati dalla pool.
+  - Distribuzione periodica dei rewards agli utenti.
+- **Considerazioni di Sicurezza:**
+  - Utilizzo di librerie standard (OpenZeppelin) per evitare vulnerabilità.
+  - Testing approfondito su testnet prima del deploy on-chain.
+
+### 4.3 Bozzetti di Codice
+
+#### Esempio: Contratto Base per il Pool su Curve (Solidity)
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+contract CurvePoolJCD {
+    IERC20 public jcdToken;
+    IERC20 public otherAsset;
+    
+    mapping(address => uint256) public liquidityProvided;
+
+    event LiquidityAdded(address indexed provider, uint256 jcdAmount, uint256 otherAssetAmount);
+    event LiquidityRemoved(address indexed provider, uint256 jcdAmount, uint256 otherAssetAmount);
+
+    constructor(IERC20 _jcdToken, IERC20 _otherAsset) {
+        jcdToken = _jcdToken;
+        otherAsset = _otherAsset;
+    }
+
+    function addLiquidity(uint256 jcdAmount, uint256 otherAssetAmount) external {
+        // Logica per il trasferimento e l'aggiornamento della liquidità
+        require(jcdToken.transferFrom(msg.sender, address(this), jcdAmount), "Transfer JCD failed");
+        require(otherAsset.transferFrom(msg.sender, address(this), otherAssetAmount), "Transfer asset failed");
+        liquidityProvided[msg.sender] += jcdAmount; // semplificato
+        emit LiquidityAdded(msg.sender, jcdAmount, otherAssetAmount);
+    }
+    
+    // Funzioni addizionali per lo swap e la rimozione della liquidità
+}
+
