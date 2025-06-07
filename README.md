@@ -1,14 +1,101 @@
 # Jacky Chan Dollar - Public Repository
 
 
-## $JCD Frontend Website
+## $JCD Frontend Original Website - Context about the project
 
-Contains $JCD Website (html, css, images).
+This repository contains the original $JCD Website (html, css, images).
 This allows others to make their own versions or help maintenence.
 
-🥳 Update - Staking coming soon!
+## 🥳 Web2Update - Staking coming soon!
 After long time, this project is almost ready to the next phase.
 Uniswap V4 allows for higher rewards due to gas optimization and $JCD will have soon a strategy running around
+
+Website Update -> updated React-Vite Interface + express server
+
+## 🥳 Web3  Update - Uniswap V3-v4 JCD Report
+
+Segue un report dettagliato per chiarire i concetti di base di Uniswap V3, il “rate” (prezzo), market cap, e cosa è successo con il presunto “dump” su JCD/ETH:
+
+---
+
+## 🔍 1. Fondamentali: rate, prezzo, market cap
+
+* **Rate = prezzo spot** nel pool, cioè quanti token ETH ottieni in cambio di 1 JCD (o viceversa). In Uniswap V3, questo è calcolato come riserva\_token1 / riserva\_token0, esattamente come nei modelli tradizionali *constant product* ([mixbytes.io][1]).
+* **Market cap** è semplicemente (supply\_totale × prezzo\_market). Se il prezzo scende — a causa di vendite — pure il market cap cala di conseguenza.
+
+---
+
+## 📉 2. Uniswap V3: “concentrated liquidity” e ticks
+
+* In Uniswap V2, la liquidità era distribuita uniformemente tra prezzo 0 e ∞. In V3, invece, i fornitori possono scegliere un **intervallo di prezzo** — ad esempio da 100 a 150 000 JCD/ETH — e concentrare lì la loro liquidità ([uniswapv3book.com][2]).
+* Questi intervalli sono gestiti tramite **ticks**, ognuno corrisponde a uno step di \~0,01% nel prezzo ([mixbytes.io][1]).
+* La liquidità è “attiva” solo se il prezzo è **all’interno** dell’intervallo. Se il prezzo esce, il LP resta con **solo uno** dei due token — prevista una specie di “limit order passivo” ([docs.uniswap.org][3]).
+
+---
+
+## 3. 🧮 Calcoli della matematica di base
+
+* Il pool mantiene una costante $x \cdot y = k$, dove $x$ e $y$ sono riserve dei due token. La **liquidità L** è correlata alla **radice quadrata** di queste riserve ([mixbytes.io][1]).
+* Gli LP devono calcolare quanta quantità di token depositare per un intervallo:
+
+  * Dentro l’intervallo: i depositi dipendono da √$P$ (prezzo) e tick bounds ([blog.uniswap.org][4]).
+  * Fuori intervallo: il pool si trasforma in una sola riserva (solo JCD o solo ETH a seconda della direzione).
+* Formule concrete: vedi equazioni nel paper “LIQUIDITY MATH IN UNISWAP V3” ([atiselsts.github.io][5]).
+
+---
+
+## 4. 🏦 Minting, fees, impermanent loss
+
+* LP guadagnano solo **se il prezzo rimane nel loro intervallo** — ci guadagnano fee swap. Se il prezzo esce, i guadagni cessano .
+* Riposizionamenti o aggiustamenti di intervallo richiedono **gas fee**, e il rischio di **impermanent loss** aumenta in intervalli stretti ([arxiv.org][6]).
+
+---
+
+## 5. Cosa è successo su JCD/ETH? Il “dump”
+
+### 📉 Vendite massive (“dump”)
+
+* Gruppi di utenti (i cosiddetti “dumpster”) hanno venduto una grossa quantità di JCD in cambio di ETH, causando un calo del rate JCD/ETH da \~2 ETH a \~1.31 ETH. Questo ha spostato il prezzo fuori dagli intervalli di molti LP, generando disattivazione delle loro posizioni e meno fee generate.
+
+### 🧑‍💼 Ritiro LP & fee
+
+* Il “tizio che ha tolto LP e fees” ha probabilmente:
+
+  1. Aggiunto liquidità in un intervallo preciso (es. 1.8–2.2 ETH per JCD).
+  2. Guaragnato molte fee di swap mentre il prezzo era ancora in intervallo.
+  3. Subito dopo un grosso dump (o lo ha causato), quando il prezzo si è spostato a \~1.31, ha rimosso la sua posizione (prelevando sia JCD che ETH più le fee).&#x20;
+* Questo tipo di strategia è un esempio di **range trading, raccolta fee, e uscita strategica** al cambio intervallo.
+
+---
+
+## 6. 🧩 Conclusione strategica
+
+| Fattore                 | Impatto                                                                                                                      |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Intervallo scelto**   | Più è stretto → più fee potenziali, ma alta probabilità che il prezzo lo superi.                                             |
+| **Dump improvviso**     | Sposta prezzo fuori range → LP non guadagnano più fee.                                                                       |
+| **Tempismo nel ritiro** | Chi ritira dopo il calo incassa fee e residuo token. Può risultare profittevole rispetto a chi resta nel range e subisce IL. |
+
+LP avanzati bilanciano **fee potenziali**, **gas per riposizionamento**, e **rischio di IL**, che studi accademici dettagliano bene .
+
+---
+
+### ✅ In sintesi
+
+* **Rate** = prezzo JCD/ETH nel pool.
+* In Uniswap V3, la liquidità può essere **concentrata** in range price-specifici tramite ticks.
+* I LP guadagnano **fee solo se il prezzo resta in range**; altrimenti l’investimento diventa one-token e non produce fee.
+* I dump massivi possono **abbattere il prezzo**, facendo uscire il prezzo dal range e che chi ritira al momento giusto incassa più degli altri.
+
+Se vuoi posso mostrarti esempi concreti di calcoli su JCD usando sqrtPriceX96, o simulare l’anno di fee contro impermanent loss su vari range. Fammi sapere!
+
+[1]: https://mixbytes.io/blog/uniswap-v3-ticks-dive-into-concentrated-liquidity?utm_source=chatgpt.com "Uniswap V3 ticks - dive into concentrated liquidity - MixBytes"
+[2]: https://uniswapv3book.com/milestone_0/uniswap-v3.html?utm_source=chatgpt.com "Uniswap V3 Development Book"
+[3]: https://docs.uniswap.org/concepts/protocol/concentrated-liquidity?utm_source=chatgpt.com "Concentrated Liquidity - Uniswap Docs"
+[4]: https://blog.uniswap.org/uniswap-v3-math-primer-2?utm_source=chatgpt.com "A Primer on Uniswap v3 Math Part 2: Stay Awake by Reading it Aloud"
+[5]: https://atiselsts.github.io/pdfs/uniswap-v3-liquidity-math.pdf?utm_source=chatgpt.com "[PDF] LIQUIDITY MATH IN UNISWAP V3 - Atis Elsts"
+[6]: https://arxiv.org/abs/2111.09192?utm_source=chatgpt.com "Impermanent Loss in Uniswap v3"
+
 
 ## Uniswap Library
 
@@ -184,4 +271,6 @@ contract CurvePoolJCD {
     
     // Funzioni addizionali per lo swap e la rimozione della liquidità
 }
+```
 
+---
