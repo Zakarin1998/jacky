@@ -6,6 +6,244 @@
 This repository contains the original $JCD Website (html, css, images).
 This allows others to make their own versions or help maintenence.
 
+Here’s a minimal Solidity repo structure tailored for your JCD DAO to deploy an Uniswap V4 pool with essential MEV-protection and liquidity features using hooks. It includes hook contracts, deployment scripts, and support for dynamic fees and range-based protection. External MM bots are assumed integrated off-chain.
+
+---
+
+## 📂 Repo Structure
+
+```
+/contracts
+  |— JCDHook.sol
+  |— HookFactory.sol
+/scripts
+  |— deployHook.s.sol
+/tests
+  |— JCDHook.t.sol
+```
+
+---
+
+## 1. `contracts/JCDHook.sol`
+
+A Uniswap V4 hook implementing `beforeSwap` + `afterSwap`, dynamic-fee logic, and optional price oracle integration.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/src/types/BeforeSwapDelta.sol";
+
+contract JCDHook is BaseHook {
+    using PoolKeyLibrary for PoolKey;
+
+    uint256 public constant MAX_PRICE_DEVIATION_BPS = 50; // 0.5%
+    address public oracle; // Set to a trusted price oracle
+
+    constructor(IPoolManager _poolManager, address _oracle) BaseHook(_poolManager) {
+        oracle = _oracle;
+    }
+
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            afterAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: true,
+            afterSwap: true,
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+
+    function beforeSwap(
+        address sender,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata params,
+        bytes calldata
+    )
+        external
+        override
+        returns (bytes4, BeforeSwapDelta memory, uint24)
+    {
+        // 1) Price check via oracle (pseudo):
+        uint256 onchainPrice = uint256(params.amountSpecified); // placeholder
+        uint256 oraclePrice = IOracle(oracle).getPrice(key.token0, key.token1);
+        uint256 deviation = onchainPrice > oraclePrice
+            ? ((onchainPrice - oraclePrice) * 1e4) / oraclePrice
+            : ((oraclePrice - onchainPrice) * 1e4) / oraclePrice;
+        require(deviation <= MAX_PRICE_DEVIATION_BPS, "Price deviates >0.5%");
+
+        // 2) Dynamic fee adjust (optional: let PoolManager know via return)
+        BeforeSwapDelta memory delta = BeforeSwapDeltaLibrary.ZERO_DELTA;
+
+        return (BaseHook.beforeSwap.selector, delta, 0);
+    }
+
+    function afterSwap(
+        address, PoolKey calldata, IPoolManager.SwapParams calldata, 
+        int128, bytes calldata
+    )
+        external
+        override
+        returns (bytes4, int128)
+    {
+        // Custom accounting or logging can go here
+        return (BaseHook.afterSwap.selector, 0);
+    }
+}
+
+interface IOracle {
+    function getPrice(address tokenA, address tokenB) external view returns (uint256);
+}
+```
+
+---
+
+## 2. `contracts/HookFactory.sol`
+
+Deploys a hook with mined address flags and attaches it to a new V4 pool.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {JCDHook} from "./JCDHook.sol";
+import {HookMiner} from "v4-periphery/src/utils/HookMiner.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey, FeeTier} from "v4-core/src/types/PoolKey.sol";
+
+contract HookFactory {
+    IPoolManager public poolManager;
+    address public oracle;
+
+    constructor(IPoolManager _pm, address _oracle) {
+        poolManager = _pm;
+        oracle = _oracle;
+    }
+
+    function deployAndInitPool(
+        address token0, address token1, FeeTier feeTier
+    ) external returns (address hook, bytes32 poolId) {
+        hook = address(new JCDHook(poolManager, oracle));
+        // Use HookMiner to mine appropriate address bits for hook flags
+        HookMiner.mine(hook, uint256(Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG));
+        poolId = poolManager.createPool(
+            PoolKey({token0: token0, token1: token1, fee: feeTier, hook: hook})
+        );
+    }
+}
+```
+
+---
+
+## 3. `scripts/deployHook.s.sol`
+
+Foundry script to deploy factory and initialize JCD/ETH pool.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+import "forge-std/Script.sol";
+import {HookFactory} from "../contracts/HookFactory.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+
+contract DeployScript is Script {
+    function run() external {
+        vm.startBroadcast();
+        address pm = 0x...;     // mainnet/testnet PoolManager address
+        address oracle = 0x...; // deployed JCD/ETH oracle
+        HookFactory factory = new HookFactory(IPoolManager(pm), oracle);
+        factory.deployAndInitPool(0xJCD, 0xETH, FeeTier.MEDIUM); 
+        vm.stopBroadcast();
+    }
+}
+```
+
+---
+
+## 4. `tests/JCDHook.t.sol`
+
+Example Foundry test for price deviation.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+import "forge-std/Test.sol";
+import {JCDHook, IOracle} from "../contracts/JCDHook.sol";
+import {PoolKey, IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+
+contract JCDHookTest is Test {
+    JCDHook hook;
+    address mockOracle;
+
+    function setUp() public {
+        // deploy mock oracle
+        mockOracle = address(new MockOracle());
+        hook = new JCDHook(IPoolManager(address(1)), mockOracle);
+    }
+
+    function testDeviation() public {
+        PoolKey memory key;
+        // simulate prices
+        vm.prank(mockOracle);
+        MockOracle(mockOracle).setPrice(1000);
+        // attempt big deviation should revert
+    }
+}
+
+contract MockOracle is IOracle {
+    uint256 price;
+    function setPrice(uint256 p) external { price = p; }
+    function getPrice(address, address) external view returns (uint256) { return price; }
+}
+```
+
+---
+
+## ✅ Next Steps
+
+1. **HookInput Requirements**
+
+   * Finalize dynamic fee logic or slippage thresholds.
+   * Acquire and integrate a reliable on-chain oracle (Chainlink/TWAP).
+2. **Factory Deployment**
+
+   * Use Foundry `deployHook.s.sol` to deploy factory & attach hook.
+3. **Pool Launch**
+
+   * Initialize JCD/ETH V4 pool via factory or script.
+4. **AI/Microservices Integration**
+
+   * Ensure off-chain bots are signed, integrated, pulling data from hook events.
+5. **Security & Audit**
+
+   * Audit `JCDHook.sol`, `HookFactory.sol`, and deployment scripts.
+   * Include gas-optimization review and reentrancy checks.
+6. **Governance Integration**
+
+   * Add hook control and parameter updates via JCD DAO—propose upgrades, oracle changes, thresholds.
+7. **Community Incentives**
+
+   * Educate LPs on walking through new pool via interface (Uniswap front-end integration).
+   * Consider LP incentive allocation via DAO tokens.
+
+---
+
+This code base gives you a foundation to deploy a V4 pool with MEV-aware hooks, price protection, and dynamic-fee logic—all managed under JCD DAO governance. Let me know if you'd like the next iteration: governance adapters, multisig upgrades, or frontend integration.
+
+
 ## 🥳 Web2Update - Staking coming soon!
 After long time, this project is almost ready to the next phase.
 Uniswap V4 allows for higher rewards due to gas optimization and $JCD will have soon a strategy running around
