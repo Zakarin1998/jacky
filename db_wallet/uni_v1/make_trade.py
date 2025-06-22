@@ -1,6 +1,6 @@
 from uniswap import Uniswap
 from constants import (
-    VERSION, ADDRESS, PRIVATE_KEY, INFURA_KEY
+    VERSION, ADDRESS, PRIVATE_KEY, INFURA_PUBLIC_KEY
 )
 from tokens import (
     ETH, SCHAP, JCD
@@ -15,7 +15,7 @@ eth_0_0001 = 10**14 # $0.35
 eth_0_00001 = 10**13
 
 # Uniswap Client Instance
-url = f'https://mainnet.infura.io/v3/{INFURA_KEY}'
+url = f'https://mainnet.infura.io/v3/{INFURA_PUBLIC_KEY}'
 
 uniswap=Uniswap(
     address=ADDRESS,
@@ -25,6 +25,9 @@ uniswap=Uniswap(
 )
 
 # Sell around 0.013 ETH for JCD
-eth_qty = eth_0_01 + (3*eth_0_001)
+eth_qty = eth_0_01 + eth_0_01 # + (3*eth_0_001)
 
-uniswap.make_trade(ETH,SCHAP,eth_qty)
+
+# uniswap.add_liquidity(...)
+
+uniswap.make_trade(ETH,JCD,eth_qty)
