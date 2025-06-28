@@ -1,6 +1,5 @@
 # Jacky Chan Dollar - Public Repository
 
-
 ## $JCD Frontend Original Website - Context about the project
 
 This repository contains the original $JCD Website (html, css, images).
@@ -10,8 +9,28 @@ Here’s a minimal Solidity repo structure tailored for your JCD DAO to deploy a
 
 ---
 
-## 📂 Repo Structure
+## JCD Dashboard Backend
 
+### 📂 Repo Structure
+
+### Dashboard Backend
+
+```
+jcd_dashboard/
+├── .env.template
+├── config/
+│   └── settings.py
+├── monitor/
+│   ├── __init__.py
+│   └── price_monitor.py
+├── qr/
+│   ├── __init__.py
+│   └── qr_generator.py
+├── app.py
+└── README.md
+```
+
+### Contracts Solidity
 ```
 /contracts
   |— JCDHook.sol
@@ -23,6 +42,146 @@ Here’s a minimal Solidity repo structure tailored for your JCD DAO to deploy a
 ```
 
 ---
+
+### Configuration - `.env.template`
+
+```env
+# RPC and network settings
+RPC_URL=https://mainnet.infura.io/v3/YOUR_INFURA_KEY
+# Uniswap addresses
+V1_PAIR_ADDRESS=0xYourUniswapV1PairAddress
+V3_POOL_ADDRESS=0xYourUniswapV3PoolAddress
+JCD_ADDRESS=0xYourJCDAddress
+WETH_ADDRESS=0xC02aaa39b223FE8D0A0E5C4F27eAD9083C756Cc2
+
+# Monitoring
+SPREAD_THRESHOLD=3
+POLL_INTERVAL=15
+
+# QR Generator (optional configuration)
+# No external secrets required
+
+# Flask settings
+env=development
+PORT=5000
+```
+
+#### Setup
+1. Copy `.env.template` to `.env` and fill in values.
+2. `pip install -r requirements.txt`
+3. `python app.py`
+
+#### Endpoints
+- `GET /api/price-status`: restituisce il prezzo attuale e lo spread.
+- `POST /api/generate-qr`:
+  - JSON body: `{ "data": "text or URL", "logo_path": "path/to/logo.png" }`
+  - Risponde con l'immagine PNG generata.
+
+### 2. `config/settings.py`
+
+```python
+import os
+from dotenv import load_dotenv
+from web3 import Web3
+
+load_dotenv()
+
+# RPC
+RPC_URL = os.getenv('RPC_URL')
+W3 = Web3(Web3.HTTPProvider(RPC_URL))
+
+# Uniswap
+V1_PAIR_ADDRESS = Web3.to_checksum_address(os.getenv('V1_PAIR_ADDRESS'))
+V3_POOL_ADDRESS = Web3.to_checksum_address(os.getenv('V3_POOL_ADDRESS'))
+JCD_ADDRESS = Web3.to_checksum_address(os.getenv('JCD_ADDRESS'))
+WETH_ADDRESS = Web3.to_checksum_address(os.getenv('WETH_ADDRESS'))
+
+# Monitoring
+SPREAD_THRESHOLD = float(os.getenv('SPREAD_THRESHOLD', '3'))
+POLL_INTERVAL = int(os.getenv('POLL_INTERVAL', '15'))
+
+# Flask
+FLASK_ENV = os.getenv('env', 'production')
+PORT = int(os.getenv('PORT', '5000'))
+```
+
+### 3. `monitor/price_monitor.py`
+
+```python
+import logging
+from decimal import Decimal, getcontext
+from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+from config.settings import W3, V1_PAIR_ADDRESS, V3_POOL_ADDRESS, SPREAD_THRESHOLD, POLL_INTERVAL
+
+# ABIs omitted for brevity (same as before)
+# Initialize contracts
+# get_v1_price(), get_v3_price() ... log_prices()
+
+getcontext().prec = 28
+logging.basicConfig(level=logging.INFO)
+
+class PriceMonitor:
+    def __init__(self):
+        # init contract instances
+        pass
+    def get_v1_price(self):
+        ...
+    def get_v3_price(self):
+        ...
+    def log_prices(self):
+        ...
+    def start(self):
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(self.log_prices, 'interval', seconds=POLL_INTERVAL)
+        scheduler.start()
+```
+
+### 4. `qr/qr_generator.py`
+
+```python
+from PIL import Image
+import qrcode
+
+def generate_qr_with_logo(data, logo_path, output_path='sticker.png', output_size=600, logo_ratio=0.2):
+    # existing implementation
+    ...
+```
+
+### 5. `app.py`
+
+```python
+from flask import Flask, request, jsonify, send_file
+from monitor.price_monitor import PriceMonitor
+from qr.qr_generator import generate_qr_with_logo
+import threading
+
+app = Flask(__name__)
+monitor = PriceMonitor()
+
+# Start monitor in background thread
+def start_monitor():
+    monitor.start()
+threading.Thread(target=start_monitor, daemon=True).start()
+
+@app.route('/api/price-status', methods=['GET'])
+def price_status():
+    # Return last logged price and spread
+    data = monitor.get_last_status()
+    return jsonify(data)
+
+@app.route('/api/generate-qr', methods=['POST'])
+def api_generate_qr():
+    payload = request.get_json()
+    data = payload.get('data')
+    logo = payload.get('logo_path')
+    output = 'sticker.png'
+    generate_qr_with_logo(data, logo, output_path=output)
+    return send_file(output, mimetype='image/png')
+
+if __name__ == '__main__':
+    app.run(port=PORT, debug=(FLASK_ENV=='development'))
+```
 
 
 ## Decentralized Governance
