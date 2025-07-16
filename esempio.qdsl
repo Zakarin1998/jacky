@@ -1,0 +1,18 @@
+# Viaggio quantico di consapevolezza
+
+observe(Ω)
+
+register Ψ_1 = state("conflitto")
+register Ψ_2 = state("accettazione")
+
+while not in_state(Ψ_2):
+    intent("lasciare andare") => collapse_to(Ψ_accettazione)
+
+gate armonizza(Ψ_in) = Ψ_in ⊗ Ψ_respiro
+
+if (Ψ_accettazione AND NOT Ψ_dubbio):
+    use gate armonizza on Ψ_accettazione
+
+event("sogno ricorrente") => classify(Ψ_onirico) = Ω
+
+multiverse_jump from Ψ_1 to Ψ_possible["equilibrio_sistemico"]

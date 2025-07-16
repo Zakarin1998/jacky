@@ -25,8 +25,7 @@ uniswap=Uniswap(
 )
 
 # Sell around 0.013 ETH for JCD
-eth_qty = eth_0_01 + eth_0_01 # + (3*eth_0_001)
-
+eth_qty = eth_0_01# + (3*eth_0_001)
 
 # uniswap.add_liquidity(...)
 

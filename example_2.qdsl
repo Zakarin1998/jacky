@@ -1,0 +1,26 @@
+# esempio_2.qdsl
+observe(Ω)                                     # presa di consapevolezza del mondo quantico
+
+# Registriamo gli stati di base
+register Ψ_vuoto    = state("stato neutro iniziale")
+register Ψ_sensi    = state("sensi quantici attivati")
+register Ψ_vento    = state("vento percepito")
+register Ψ_controllo = state("controllo del vento")
+
+# Ciclo di addestramento interiore finché non sento pienamente il vento
+while not in_state(Ψ_vento):
+    intent("ascolto profondo") => collapse_to(Ψ_sensi)
+
+# Trasformazione intermedia: armonizzo sensi e vento
+gate armonizza(Ψ_in) = Ψ_in ⊗ Ψ_vento
+use gate armonizza on Ψ_sensi
+
+# Se ho raggiunto la percezione chiara del vento, passo al controllo
+if (Ψ_sensi AND NOT Ψ_dubbio):
+    intent("fiducia assoluta") => collapse_to(Ψ_controllo)
+
+# Evento sogno premonitore legato al vento
+event("soffio notturno") => classify(Ψ_onirico) = Ω
+
+# Salto multiversale verso la versione di me che domina il vento
+multiverse_jump from Ψ_vuoto to Ψ_controllo

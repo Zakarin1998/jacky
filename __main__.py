@@ -1,4 +1,5 @@
 import argparse 
+import numpy as np
 
 from dbcores_def.configurations import (
     get_logger,
@@ -11,9 +12,10 @@ from dbcores_def.calculation import (
     price_to_tick
 )
 
+from dbcores_def.getprice import fetch_prices
+
 from dbcores_def.egmock import (
     log_pool_info,
-    fetch_prices,
     mock_add_liquidity,
     mock_trade_jcd_to_eth, 
     mock_monitor_risk
@@ -48,6 +50,14 @@ def main(args):
         case _:
             logger.info("ℹ️ No action or info selected.")
 
+
+def test_fetch_prices():
+    prices = fetch_prices(7)
+    assert isinstance(prices, np.ndarray)
+    assert len(prices) > 0
+    assert (prices > 0).all()
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Unified LP flow script for JCD pools"
@@ -67,4 +77,5 @@ if __name__ == '__main__':
     )
     
     args = parser.parse_args()
-    main(args)
+    # main(args)
+    test_fetch_prices()

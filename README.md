@@ -1055,3 +1055,47 @@ Vuoi che ti aiuti a progettare concretamente un Hook (`beforeSwap`) con pseudoco
 [5]: https://arrakis.finance/blog/uniswap-v4-is-live-these-are-the-hooks-to-look-out-for?utm_source=chatgpt.com "Uniswap V4 Is Live. These Are the Hooks To Look Out For"
 [6]: https://github.com/ora-io/awesome-uniswap-hooks?utm_source=chatgpt.com "ora-io/awesome-uniswap-hooks - GitHub"
 [7]: https://hacken.io/discover/auditing-uniswap-v4-hooks/?utm_source=chatgpt.com "Auditing Uniswap V4 Hooks: Risks, Vulnerabilities, and Best Practices"
+
+
+---
+
+# QDSL Parser
+
+In questo momento stiamo mettendo in piedi un **mini‑framework Python** che:
+
+1. **Definisce un nuovo linguaggio di configurazione** (`.qdsl`)
+   – Ogni riga del file descrive un’“azione quantistica” (osservazione, intento, gate, salto nel multiverso, evento inspiegabile, ecc.)
+   – La sintassi è pensata per somigliare a vere istruzioni di programmazione ma modellare concetti di fisica quantistica e coscienza.
+
+2. **Interpreta quel file riga per riga**
+   – Il parser (funzione `parse_line`) usa espressioni regolari per riconoscere istruzioni come
+
+   ```python
+   intent("lasciare andare") => collapse_to(Ψ_accettazione)
+   event("soffio notturno") => classify(Ψ_onirico) = Ω
+   multiverse_jump from Ψ_1 to Ψ_controllo
+   ```
+
+   – Ogni volta che trova un comando conosciuto, aggiunge un nodo o un bordo a un **grafo** (usando `networkx`), oppure aggiorna stati interni (registri, probabilità).
+
+3. **Tiene traccia di un log dettagliato**
+   – Ogni comando interpretato viene registrato sia a terminale che su file (`qdsl_log.txt`).
+   – In questo modo sai esattamente quali istruzioni ha “capito” ed eseguito il tuo script.
+
+4. **Visualizza i risultati come grafici**
+
+   * **Grafo degli stati e delle transizioni** (layout circolare, nodi colorati)
+   * **Grafico a barre delle probabilità** (per le ipotesi che avrai inserito)
+
+5. **Produce un report PDF**
+   – Include una pagina di introduzione, il grafo e il grafico delle probabilità, tutto assemblato automaticamente.
+
+---
+
+### In pratica:
+
+* **Tu scrivi** un file `esempio.qdsl` con una serie di comandi che descrivono il tuo “viaggio quantico”.
+* **Il parser Python** legge quel file, riconosce le istruzioni, aggiorna strutture dati (grafo, registri, probabilità), e scrive un log.
+* **Alla fine**, `matplotlib` e `networkx` disegnano i grafici, e `PdfPages` monta il tutto in un PDF di report.
+
+È come avere un piccolo **DSL (Domain‑Specific Language)** che trasforma una descrizione testuale ad alto livello in un sistema dati, grafi e report, tutto con un singolo comando Python.

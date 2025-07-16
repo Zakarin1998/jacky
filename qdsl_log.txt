@@ -1,0 +1,51 @@
+2025-07-16 22:52:10,649 - INFO - Caricamento file: esempio.qdsl
+2025-07-16 22:52:10,650 - INFO - [OBSERVE] Suspensione collasso: \u03a9
+2025-07-16 22:52:10,651 - INFO - [REGISTER] \u03a8_1 = 'conflitto'
+2025-07-16 22:52:10,653 - INFO - [REGISTER] \u03a8_2 = 'accettazione'
+2025-07-16 22:52:10,653 - INFO - [LOOP] fino a \u03a8_2
+2025-07-16 22:52:10,654 - INFO - [INTENT] 'lasciare andare' -> \u03a8_accettazione
+2025-07-16 22:52:10,655 - INFO - [GATE] armonizza on \u03a8_in: \u03a8_in \u2297 \u03a8_respiro
+2025-07-16 22:52:10,655 - INFO - [IF] \u03a8_accettazione AND NOT \u03a8_dubbio
+2025-07-16 22:52:10,656 - INFO - [USE] gate armonizza -> \u03a8_accettazione
+2025-07-16 22:52:10,658 - WARNING - Comando non riconosciuto: event("sogno ricorrente") => classify(\u03a8_onirico) = \u03a9
+2025-07-16 22:52:10,658 - INFO - [JUMP] \u03a8_1 -> \u03a8_possible["equilibrio_sistemico"]
+2025-07-16 23:10:07,914 - INFO - Caricamento file: example_2.qdls
+2025-07-16 23:10:47,923 - INFO - Caricamento file: example_2.qdsl
+2025-07-16 23:10:47,935 - INFO - [OBSERVE] Suspensione collasso: \u03a9
+2025-07-16 23:10:47,943 - INFO - [REGISTER] \u03a8_vuoto = 'stato neutro iniziale'
+2025-07-16 23:10:47,943 - INFO - [REGISTER] \u03a8_sensi = 'sensi quantici attivati'
+2025-07-16 23:10:47,943 - INFO - [REGISTER] \u03a8_vento = 'vento percepito'
+2025-07-16 23:10:47,943 - INFO - [REGISTER] \u03a8_controllo = 'controllo del vento'
+2025-07-16 23:10:47,944 - INFO - [LOOP] fino a \u03a8_vento
+2025-07-16 23:10:47,944 - INFO - [INTENT] 'ascolto profondo' -> \u03a8_sensi
+2025-07-16 23:10:47,944 - INFO - [GATE] armonizza on \u03a8_in: \u03a8_in \u2297 \u03a8_vento
+2025-07-16 23:10:47,945 - INFO - [USE] gate armonizza -> \u03a8_sensi
+2025-07-16 23:10:47,945 - INFO - [IF] \u03a8_sensi AND NOT \u03a8_dubbio
+2025-07-16 23:10:47,945 - INFO - [INTENT] 'fiducia assoluta' -> \u03a8_controllo
+2025-07-16 23:10:47,945 - WARNING - Comando non riconosciuto: event("soffio notturno") => classify(\u03a8_onirico) = \u03a9
+2025-07-16 23:10:47,946 - INFO - [JUMP] \u03a8_vuoto -> \u03a8_controllo
+2025-07-16 23:14:16,708 - INFO - Caricamento file: example_2.qdsl
+2025-07-16 23:14:16,708 - INFO - [OBSERVE] Sospensione collasso: \u03a9
+2025-07-16 23:14:16,708 - INFO - [REGISTER] \u03a8_vuoto = 'stato neutro iniziale'
+2025-07-16 23:14:16,708 - INFO - [REGISTER] \u03a8_sensi = 'sensi quantici attivati'
+2025-07-16 23:14:16,708 - INFO - [REGISTER] \u03a8_vento = 'vento percepito'
+2025-07-16 23:14:16,709 - INFO - [REGISTER] \u03a8_controllo = 'controllo del vento'
+2025-07-16 23:14:16,709 - INFO - [LOOP] fino a \u03a8_vento
+2025-07-16 23:14:16,709 - INFO - [INTENT] 'ascolto profondo' -> \u03a8_sensi
+2025-07-16 23:14:16,709 - INFO - [GATE] armonizza on \u03a8_in: \u03a8_in \u2297 \u03a8_vento
+2025-07-16 23:14:16,709 - INFO - [USE] gate armonizza -> \u03a8_sensi
+2025-07-16 23:14:16,709 - INFO - [IF] \u03a8_sensi AND NOT \u03a8_dubbio
+2025-07-16 23:14:16,710 - INFO - [INTENT] 'fiducia assoluta' -> \u03a8_controllo
+2025-07-16 23:14:16,710 - INFO - [EVENT] 'soffio notturno' classified \u03a8_onirico = \u03a9
+2025-07-16 23:14:16,710 - INFO - [JUMP] \u03a8_vuoto -> \u03a8_controllo
+2025-07-16 23:37:02,844 - INFO - Caricamento file: esempio.qdsl
+2025-07-16 23:37:02,844 - INFO - [OBSERVE] Sospensione collasso: \u03a9
+2025-07-16 23:37:02,845 - INFO - [REGISTER] \u03a8_1 = 'conflitto'
+2025-07-16 23:37:02,845 - INFO - [REGISTER] \u03a8_2 = 'accettazione'
+2025-07-16 23:37:02,845 - INFO - [LOOP] fino a \u03a8_2
+2025-07-16 23:37:02,845 - INFO - [INTENT] 'lasciare andare' -> \u03a8_accettazione
+2025-07-16 23:37:02,845 - INFO - [GATE] armonizza on \u03a8_in: \u03a8_in \u2297 \u03a8_respiro
+2025-07-16 23:37:02,845 - INFO - [IF] \u03a8_accettazione AND NOT \u03a8_dubbio
+2025-07-16 23:37:02,846 - INFO - [USE] gate armonizza -> \u03a8_accettazione
+2025-07-16 23:37:02,846 - INFO - [EVENT] 'sogno ricorrente' classified \u03a8_onirico = \u03a9
+2025-07-16 23:37:02,846 - INFO - [JUMP] \u03a8_1 -> \u03a8_possible["equilibrio_sistemico"]
