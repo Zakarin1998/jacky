@@ -6,28 +6,28 @@ Segue una breve spiegazione dei casi d’uso ed esempi pratici.
 
 ---
 
-## 📁 Struttura finale aggiornata
+## 📁 Struttura del progetto
 
 ```plaintext
 finance_tracker/
 │
-├── main.py                      # CLI principale con Typer
+├── main.py                         # Interfaccia CLI con Typer
 │
-├── models/
+├── models/                         # Definizione entità: User, Income, Expense
 │   ├── __init__.py
 │   ├── user.py
 │   ├── income.py
 │   └── expense.py
 │
-├── storage/
+├── storage/                        # Persistenza dati su file JSON
 │   ├── __init__.py
 │   └── json_store.py
 │
-├── services/
+├── services/                       # Logica di business e gestione dati
 │   ├── __init__.py
 │   └── tracker.py
 │
-└── README.md                    # Documentazione del progetto
+└── README.md                       # Documentazione del progetto
 ```
 
 ---
@@ -120,21 +120,6 @@ python main.py list-items deductibles
 ```bash
 python main.py summary
 ```
-
----
-
-## 📁 Struttura del progetto
-
-```plaintext
-finance_tracker/
-├── main.py                  # Interfaccia CLI con Typer
-├── models/                  # Definizione entità: User, Income, Expense
-├── storage/                 # Persistenza dati su file JSON
-├── services/                # Logica di business e gestione dati
-└── README.md                # Documentazione progetto
-```
-
----
 
 ## 🔒 Persistenza dati
 
