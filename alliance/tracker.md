@@ -1,8 +1,8 @@
 # 📊 Finance Tracker CLI
 
-Una semplice ma potente applicazione a riga di comando per la gestione delle finanze personali, scritta in Python e strutturata in modo modulare e OOP.
+Una semplice ma potente applicazione a riga di comando per la gestione delle finanze personali, scritta in Python e strutturata in modo modulare e orientata agli oggetti (OOP).
 
-Segue una breve spiegazione dei casi d'uso ed esempi
+Segue una breve spiegazione dei casi d’uso ed esempi pratici.
 
 ---
 
@@ -34,18 +34,18 @@ finance_tracker/
 
 ## 🚀 Funzionalità principali
 
-- 👤 Gestione profilo utente (età, ISEE, etc.)
-- ➕ Aggiunta di **entrate** e **spese**
-- 🧾 Riconoscimento automatico delle **spese deducibili**
-- 📋 Elenco filtrato di dati salvati
-- 📈 Riepilogo finanziario con saldo netto
+* 👤 Gestione profilo utente (età, ISEE, regione, etc.)
+* ➕ Aggiunta di **entrate** e **spese**
+* 🧾 Gestione delle **spese deducibili**
+* 📋 Elenco filtrato di dati salvati (entrate, uscite, deduzioni)
+* 📈 Riepilogo finanziario con saldo netto
 
 ---
 
 ## 🧱 Requisiti
 
-- Python 3.8+
-- [Typer](https://typer.tiangolo.com) (`pip install typer[all]`)
+* Python 3.8+
+* [Typer](https://typer.tiangolo.com) (`pip install "typer[all]"`)
 
 ---
 
@@ -54,40 +54,68 @@ finance_tracker/
 ```bash
 git clone https://github.com/tuo-utente/finance-tracker-cli.git
 cd finance-tracker-cli
-pip install typer[all]
-````
+pip install "typer[all]"
+```
 
 ---
 
 ## 📌 Utilizzo
 
-### 🎯 Profilo
+### 🎯 Gestione Profilo
+
+Imposta o aggiorna i dati del profilo utente tramite opzioni:
 
 ```bash
-python main.py profile --set eta=27 isee=25716 regione=Piemonte
+python main.py profile --eta 27 --isee 25716 --regione Piemonte
 ```
 
-### ➕ Aggiungi un'entrata
+Visualizza il profilo corrente:
+
+```bash
+python main.py profile
+```
+
+---
+
+### ➕ Aggiungi un’entrata
 
 ```bash
 python main.py add-income 1200 "Stipendio mensile"
 ```
 
+---
+
 ### ➖ Aggiungi una spesa
 
 ```bash
-python main.py add-expense 400 affitto --deductible --notes "gennaio"
+python main.py add-expense 400 affitto --deductible --notes "Gennaio"
 ```
 
-### 📃 Elenca dati
+---
+
+### 📋 Elenca dati
+
+Lista di entrate:
 
 ```bash
 python main.py list-items incomes
+```
+
+Lista di uscite:
+
+```bash
 python main.py list-items expenses
+```
+
+Lista di spese deducibili:
+
+```bash
 python main.py list-items deductibles
 ```
 
-### 📈 Riepilogo
+---
+
+### 📈 Riepilogo finanziario
 
 ```bash
 python main.py summary
@@ -101,16 +129,16 @@ python main.py summary
 finance_tracker/
 ├── main.py                  # Interfaccia CLI con Typer
 ├── models/                  # Definizione entità: User, Income, Expense
-├── storage/                 # Persistenza dei dati su file JSON
-├── services/                # Logica di business
-└── README.md
+├── storage/                 # Persistenza dati su file JSON
+├── services/                # Logica di business e gestione dati
+└── README.md                # Documentazione progetto
 ```
 
 ---
 
-## 🔒 Dati
+## 🔒 Persistenza dati
 
-I dati sono salvati in un file JSON all’interno della home dell’utente:
+I dati sono salvati in un file JSON nella home directory dell’utente:
 
 ```bash
 ~/.finance_tracker.json
@@ -120,10 +148,10 @@ I dati sono salvati in un file JSON all’interno della home dell’utente:
 
 ## 🛠️ Roadmap futura
 
-* [ ] Supporto a SQLite o PostgreSQL
-* [ ] Esportazione in CSV/PDF
-* [ ] Supporto a più utenti
-* [ ] Interfaccia web o mobile
+* [ ] Supporto database SQL (SQLite, PostgreSQL)
+* [ ] Esportazione dati in CSV/PDF
+* [ ] Gestione multi-utente
+* [ ] Interfaccia web e mobile
 
 ---
 
