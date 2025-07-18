@@ -1,0 +1,27 @@
+# esempio_3.qdsl
+# Simulazione di un salto quantico in un dispositivo a effetto tunnel
+
+observe(Ω)  # Riconoscimento del fenomeno quantistico fondamentale
+
+# Registrazione dei livelli energetici dell'elettrone
+register Ψ_ground  = state("livello fondamentale, bit=0")
+register Ψ_excited = state("livello eccitato, bit=1")
+
+# Descrizione del comportamento: impulso di tensione che causa il salto
+intent("applica impulso di tensione") => collapse_to(Ψ_excited)
+
+# Decoerenza controllata: rilascio del fotone e ritorno allo stato fondamentale
+decohere(Ψ_excited) -> Ψ_ground
+
+# Evento di tunneling anomalo
+event("tunnel quantistico") => classify(Ψ_tunnel) = Ω
+
+# Entanglement tra carica e flusso nel circuito Josephson
+entangle("Ψ_ground","Ψ_excited")
+
+# Reset condizionale: se tornati al ground e non più eccitati, operazione next bit
+if (Ψ_ground AND NOT Ψ_excited):
+    intent("preparazione bit successivo") => collapse_to(Ψ_ground)
+
+# Salto multiversale concettuale per simulare la commutazione digitale
+multiverse_jump from Ψ_ground to Ψ_excited

@@ -49,3 +49,26 @@
 2025-07-16 23:37:02,846 - INFO - [USE] gate armonizza -> \u03a8_accettazione
 2025-07-16 23:37:02,846 - INFO - [EVENT] 'sogno ricorrente' classified \u03a8_onirico = \u03a9
 2025-07-16 23:37:02,846 - INFO - [JUMP] \u03a8_1 -> \u03a8_possible["equilibrio_sistemico"]
+2025-07-16 23:55:46,334 - INFO - Caricamento file: esempio_3.qdsl
+2025-07-16 23:55:46,344 - INFO - [OBSERVE] Sospensione collasso: \u03a9
+2025-07-16 23:55:46,344 - INFO - [REGISTER] \u03a8_ground = 'livello fondamentale, bit=0'
+2025-07-16 23:55:46,344 - INFO - [REGISTER] \u03a8_excited = 'livello eccitato, bit=1'
+2025-07-16 23:55:46,345 - INFO - [INTENT] 'applica impulso di tensione' -> \u03a8_excited
+2025-07-16 23:55:46,345 - INFO - [DECOHERE] \u03a8_excited -> \u03a8_ground
+2025-07-16 23:55:46,346 - INFO - [EVENT] 'tunnel quantistico' classified \u03a8_tunnel = \u03a9
+2025-07-16 23:55:46,346 - WARNING - Comando non riconosciuto: entangle("\u03a8_ground","\u03a8_excited")
+2025-07-16 23:55:46,346 - INFO - [IF] \u03a8_ground AND NOT \u03a8_excited
+2025-07-16 23:55:46,346 - INFO - [INTENT] 'preparazione bit successivo' -> \u03a8_ground
+2025-07-16 23:55:46,346 - INFO - [JUMP] \u03a8_ground -> \u03a8_excited
+2025-07-17 00:01:46,438 - INFO - Caricamento file: esempio.qdsl
+2025-07-17 00:03:50,198 - INFO - Caricamento file: esempio_3.qdsl
+2025-07-17 00:03:50,199 - INFO - [OBSERVE] Sospensione collasso: \u03a9
+2025-07-17 00:03:50,199 - INFO - [REGISTER] \u03a8_ground = 'livello fondamentale, bit=0'
+2025-07-17 00:03:50,200 - INFO - [REGISTER] \u03a8_excited = 'livello eccitato, bit=1'
+2025-07-17 00:03:50,200 - INFO - [INTENT] 'applica impulso di tensione' -> \u03a8_excited
+2025-07-17 00:03:50,201 - INFO - [DECOHERE] \u03a8_excited -> \u03a8_ground
+2025-07-17 00:03:50,201 - INFO - [EVENT] 'tunnel quantistico' classified \u03a8_tunnel = \u03a9
+2025-07-17 00:03:50,202 - INFO - [ENTANGLE] \u03a8_ground entangled with \u03a8_excited
+2025-07-17 00:03:50,202 - INFO - [IF] \u03a8_ground AND NOT \u03a8_excited
+2025-07-17 00:03:50,202 - INFO - [INTENT] 'preparazione bit successivo' -> \u03a8_ground
+2025-07-17 00:03:50,202 - INFO - [JUMP] \u03a8_ground -> \u03a8_excited

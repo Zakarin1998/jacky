@@ -1,0 +1,22 @@
+2025-07-17 00:09:37,712 - INFO - Caricamento file: esempio_3.qdsl
+2025-07-17 00:09:37,713 - INFO - [OBSERVE] \u03a9
+2025-07-17 00:09:37,714 - INFO - [REGISTER] \u03a8_ground = 'livello fondamentale, bit=0'
+2025-07-17 00:09:37,714 - INFO - [REGISTER] \u03a8_excited = 'livello eccitato, bit=1'
+2025-07-17 00:09:37,715 - INFO - [INTENT] 'applica impulso di tensione' -> \u03a8_excited
+2025-07-17 00:09:37,716 - INFO - [DECOHERE] \u03a8_excited -> \u03a8_ground
+2025-07-17 00:09:37,716 - INFO - [EVENT] 'tunnel quantistico' = \u03a9
+2025-07-17 00:09:37,717 - INFO - [ENTANGLE] \u03a8_ground <-> \u03a8_excited
+2025-07-17 00:09:37,725 - INFO - [WARN] Comando non riconosciuto: if (\u03a8_ground AND NOT \u03a8_excited):
+2025-07-17 00:09:37,725 - INFO - [INTENT] 'preparazione bit successivo' -> \u03a8_ground
+2025-07-17 00:09:37,726 - INFO - [JUMP] \u03a8_ground -> \u03a8_excited
+2025-07-18 03:30:09,390 - INFO - Caricamento file: esempio_3.qdsl
+2025-07-18 03:30:09,391 - INFO - [OBSERVE] \u03a9
+2025-07-18 03:30:09,392 - INFO - [REGISTER] \u03a8_ground = 'livello fondamentale, bit=0'
+2025-07-18 03:30:09,392 - INFO - [REGISTER] \u03a8_excited = 'livello eccitato, bit=1'
+2025-07-18 03:30:09,392 - INFO - [INTENT] 'applica impulso di tensione' -> \u03a8_excited
+2025-07-18 03:30:09,392 - INFO - [DECOHERE] \u03a8_excited -> \u03a8_ground
+2025-07-18 03:30:09,392 - INFO - [EVENT] 'tunnel quantistico' = \u03a9
+2025-07-18 03:30:09,393 - INFO - [ENTANGLE] \u03a8_ground <-> \u03a8_excited
+2025-07-18 03:30:09,393 - INFO - [WARN] Comando non riconosciuto: if (\u03a8_ground AND NOT \u03a8_excited):
+2025-07-18 03:30:09,393 - INFO - [INTENT] 'preparazione bit successivo' -> \u03a8_ground
+2025-07-18 03:30:09,393 - INFO - [JUMP] \u03a8_ground -> \u03a8_excited
